@@ -6,7 +6,7 @@
 mod state;
 
 
-use flashport::{
+use blitz_bingo::{
     BingoCard, BingoType, FlashportAbi, GameSession, Operation, OperationResponse, RollRecord,
     MIN_BET, MAX_BET, ROLL_COST,
 };
@@ -676,7 +676,7 @@ mod tests {
         Contract, ContractRuntime,
     };
 
-    use flashport::Operation;
+    use blitz_bingo::Operation;
 
     use super::{FlashportContract, FlashportState};
 
@@ -692,7 +692,7 @@ mod tests {
             .expect("Should not await");
 
         match response {
-            flashport::OperationResponse::SessionStarted { session_id, .. } => {
+            blitz_bingo::OperationResponse::SessionStarted { session_id, .. } => {
                 assert_eq!(session_id, 1);
             }
             _ => panic!("Expected SessionStarted response"),
@@ -709,7 +709,7 @@ mod tests {
             .expect("Should not await");
 
         match response {
-            flashport::OperationResponse::DepositReceived { new_balance, .. } => {
+            blitz_bingo::OperationResponse::DepositReceived { new_balance, .. } => {
                 // Should have 10 LINERA = 10 * 10^18 atto
                 assert_eq!(new_balance, "10000000000000000000");
             }
@@ -735,7 +735,7 @@ mod tests {
             .expect("Should not await");
 
         match response {
-            flashport::OperationResponse::Error { message } => {
+            blitz_bingo::OperationResponse::Error { message } => {
                 assert!(message.contains("Insufficient balance"));
             }
             _ => panic!("Expected Error response for insufficient balance"),
@@ -765,7 +765,7 @@ mod tests {
             .expect("Should not await");
 
         match response {
-            flashport::OperationResponse::GameStarted { game_id, card, .. } => {
+            blitz_bingo::OperationResponse::GameStarted { game_id, card, .. } => {
                 assert_eq!(game_id, 1);
                 // Center should be FREE (marked)
                 assert!(card.marked[12]);

@@ -1,5 +1,5 @@
 [package]
-name = "flashport"
+name = "blitz-bingo"
 version = "0.1.0"
 edition = "2021"
 
@@ -16,11 +16,11 @@ linera-sdk = { version = "0.15.10", features = ["test", "wasmer"] }
 tokio = { version = "1.40", features = ["rt", "sync"] }
 
 [[bin]]
-name = "flashport_contract"
+name = "blitz_bingo_contract"
 path = "src/contract.rs"
 
 [[bin]]
-name = "flashport_service"
+name = "blitz_bingo_service"
 path = "src/service.rs"
 
 [profile.release]

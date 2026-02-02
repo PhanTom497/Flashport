@@ -13,6 +13,44 @@ import { QuickBetChips } from './components/QuickBetChips';
 
 type TabType = 'game' | 'faucet';
 
+
+const AppIdDisplay = () => {
+    const appId = import.meta.env.VITE_BLITZ_APP_ID;
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        if (appId) {
+            navigator.clipboard.writeText(appId);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
+    };
+
+    return (
+        <div className="max-w-2xl mx-auto mb-6 px-4">
+            <div className="glass-card p-4 border border-white/5 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-500 to-amber-500 opacity-50"></div>
+
+                <div className="w-full">
+                    <label className="text-xs text-secondary font-bold tracking-wider uppercase block mb-1.5 ml-1">Blitz Bingo App ID</label>
+                    <div className="relative flex items-center gap-2 w-full">
+                        <code className="flex-1 bg-[#05070A] border border-white/10 rounded-xl px-4 py-3 text-sm text-secondary font-mono truncate hover:text-white transition-colors">
+                            {appId}
+                        </code>
+                        <button
+                            onClick={handleCopy}
+                            className="bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 border border-purple-500/20 transition-all font-semibold rounded-xl w-11 h-11 flex items-center justify-center shrink-0"
+                            title="Copy App ID"
+                        >
+                            {copied ? '✓' : '📋'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 function App() {
     const {
         // Config
@@ -242,9 +280,23 @@ function App() {
                                             </div>
                                             <div>
                                                 <label className="text-xs text-secondary block mb-1">Application ID</label>
-                                                <p className="text-white text-sm font-mono bg-white/5 rounded-lg px-3 py-2 truncate">
-                                                    {applicationId || 'N/A'}
-                                                </p>
+                                                <div className="flex items-center gap-2">
+                                                    <p className="text-white text-sm font-mono bg-white/5 rounded-lg px-3 py-2 truncate flex-1">
+                                                        {applicationId || 'N/A'}
+                                                    </p>
+                                                    <button
+                                                        onClick={() => {
+                                                            if (applicationId) {
+                                                                navigator.clipboard.writeText(applicationId);
+                                                                // You might want to show a toast, but keeping it simple for now
+                                                            }
+                                                        }}
+                                                        className="p-2 rounded-lg bg-purple-500/20 text-purple-400 hover:bg-purple-500/30 transition-colors"
+                                                        title="Copy App ID"
+                                                    >
+                                                        📋
+                                                    </button>
+                                                </div>
                                             </div>
                                             <button onClick={disconnect} className="w-full py-2 rounded-lg border border-red-500/30 bg-red-500/10 text-red-400 font-semibold text-sm hover:bg-red-500/20 transition-all">
                                                 🔌 Disconnect Wallet
@@ -331,31 +383,42 @@ function App() {
 
                     {/* Game Tab */}
                     {activeTab === 'game' && showSetupPanel && (
-                        <motion.div
-                            key="setup"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="glass-card max-w-2xl mx-auto text-center py-12"
-                        >
-                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-amber-500/20 flex items-center justify-center">
-                                <span className="text-3xl">🦊</span>
-                            </div>
-                            <h2 className="text-2xl font-bold text-white mb-3">Connect Wallet</h2>
-                            <p className="text-secondary mb-6 max-w-md mx-auto">
-                                Connect your MetaMask wallet to start playing on the Linera Conway testnet.
-                            </p>
-                            <button
-                                onClick={handleConnectWallet}
-                                disabled={isConnecting}
-                                className="btn-primary text-lg px-8 py-3"
+                        <div className="w-full">
+                            <motion.div
+                                key="app-id"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
                             >
-                                {isConnecting ? '⏳ Connecting...' : '🦊 Connect MetaMask'}
-                            </button>
-                            {connectionError && (
-                                <p className="text-red-400 text-sm mt-4">⚠️ {connectionError}</p>
-                            )}
-                        </motion.div>
+                                <AppIdDisplay />
+                            </motion.div>
+
+                            <motion.div
+                                key="setup"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                className="glass-card max-w-2xl mx-auto text-center py-12"
+                            >
+                                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-amber-500/20 flex items-center justify-center">
+                                    <span className="text-3xl">🦊</span>
+                                </div>
+                                <h2 className="text-2xl font-bold text-white mb-3">Connect Wallet</h2>
+                                <p className="text-secondary mb-6 max-w-md mx-auto">
+                                    Connect your MetaMask wallet to start playing on the Linera Conway testnet.
+                                </p>
+                                <button
+                                    onClick={handleConnectWallet}
+                                    disabled={isConnecting}
+                                    className="btn-primary text-lg px-8 py-3"
+                                >
+                                    {isConnecting ? '⏳ Connecting...' : '🦊 Connect MetaMask'}
+                                </button>
+                                {connectionError && (
+                                    <p className="text-red-400 text-sm mt-4">⚠️ {connectionError}</p>
+                                )}
+                            </motion.div>
+                        </div>
                     )}
 
                     {activeTab === 'game' && !showSetupPanel && !session && (
@@ -622,6 +685,7 @@ function App() {
                     )}
                 </AnimatePresence>
             </main>
+
 
             {/* Footer */}
             <footer className="text-center text-secondary text-xs py-8 border-t border-white/5 mt-12">

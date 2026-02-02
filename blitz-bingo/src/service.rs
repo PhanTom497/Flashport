@@ -8,7 +8,7 @@ mod state;
 use std::sync::Arc;
 
 use async_graphql::{EmptySubscription, Object, Schema};
-use flashport::{
+use blitz_bingo::{
     BingoCard, FlashportAbi, GameSession, Operation, PlayerBalance, 
     ENTRY_FEE, ROLL_COST,
 };

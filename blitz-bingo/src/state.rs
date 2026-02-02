@@ -4,7 +4,7 @@
 use linera_sdk::linera_base_types::Amount;
 use linera_sdk::views::{linera_views, MapView, QueueView, RegisterView, RootView, ViewStorageContext};
 
-use flashport::{BingoCard, GameSession, PlayerBalance, RollRecord};
+use blitz_bingo::{BingoCard, GameSession, PlayerBalance, RollRecord};
 
 /// The complete FlashPort application state
 #[derive(RootView, async_graphql::SimpleObject)]
