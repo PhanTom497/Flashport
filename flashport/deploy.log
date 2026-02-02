@@ -1,0 +1,8 @@
+2026-01-24T04:51:16.673407Z  INFO linera::options: Using default wallet directory /home/baba/.config/linera
+2026-01-24T04:51:16.928496Z  INFO linera::options: Using default wallet directory /home/baba/.config/linera
+2026-01-24T04:51:16.932839Z  INFO linera::options: Using default wallet directory /home/baba/.config/linera
+2026-01-24T04:51:16.939424Z  INFO linera: Publishing and creating application on chain 727fa5f491e94d3843078df9576bf79d0bcf6f8757d4a2f7e431f7bb85b2ff93
+2026-01-24T04:51:16.941304Z  INFO linera_client::client_context: Loading bytecode files
+2026-01-24T04:51:16.951592Z  INFO linera_client::client_context: Publishing module
+2026-01-24T04:52:10.170965Z  WARN handle_chain_info_query{address="https://testnet-linera.lavenderfive.com:443"}: grpc_client: error=Grpc error: remote request [handle_chain_info_query] failed with status: Status { code: Unavailable, message: "received fatal alert: InternalError", source: Some(tonic::transport::Error(Transport, ConnectError(Custom { kind: InvalidData, error: AlertReceived(InternalError) }))) }
+2026-01-24T04:52:46.896010Z  WARN handle_chain_info_query{address="https://swyke-linera-test-00.restake.cloud:443"}: grpc_client: error=Grpc error: remote request [handle_chain_info_query] failed with status: Status { code: Unavailable, message: "tcp connect error", source: Some(tonic::transport::Error(Transport, ConnectError(ConnectError("tcp connect error", 91.99.149.8:443, Custom { kind: TimedOut, error: Elapsed(()) })))) }
