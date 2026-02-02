@@ -28,7 +28,7 @@ function getMultiplierTier(rolls: number): { name: string; color: string } {
     return { name: 'STANDARD', color: 'from-gray-400 to-gray-500' };
 }
 
-// Gold $FLASH particle for winning shower
+// Gold $BLITZ particle for winning shower
 function GoldParticle({ delay, x, duration, symbolIndex }: { delay: number; x: number; duration: number; symbolIndex: number }) {
     const symbols = ['💰', '⚡', '🪙', '✨', '💎'];
     const symbol = symbols[symbolIndex % symbols.length];
@@ -169,7 +169,7 @@ export function WinModal({ bingoType, rollsCount, prize, onNewGame, onClose, onC
                                 animate={{ scale: [1, 1.05, 1] }}
                                 transition={{ duration: 1.5, repeat: Infinity }}
                             >
-                                +{prize.toFixed(2)} $FLASH
+                                +{prize.toFixed(2)} $BLITZ
                             </motion.p>
                         </motion.div>
                     )}
@@ -178,7 +178,7 @@ export function WinModal({ bingoType, rollsCount, prize, onNewGame, onClose, onC
                     <div className="glass-card p-4 mb-6 relative z-10">
                         <div className="flex justify-between items-center">
                             <span className="text-secondary">Completed in</span>
-                            <span className="text-2xl font-black text-flash">{rollsCount} rolls</span>
+                            <span className="text-2xl font-black text-blitz">{rollsCount} rolls</span>
                         </div>
                     </div>
 

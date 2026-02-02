@@ -32,7 +32,7 @@ interface PotentialPayout {
     tierName: string;
 }
 
-const APP_ID = import.meta.env.VITE_FLASHPORT_APP_ID;
+const APP_ID = import.meta.env.VITE_BLITZ_APP_ID;
 
 export function useGame() {
     // Get wallet context
@@ -276,11 +276,11 @@ export function useGame() {
         if (amountLinera <= 0) return;
 
         setIsLoading(true);
-        setTxStatus(`Minting ${amountLinera} FlashPort tokens...`);
+        setTxStatus(`Minting ${amountLinera} Blitz Tokens...`);
 
         try {
-            await executeMutation(`mutation { deposit(amountLinera: ${amountLinera}) }`, `Mint ${amountLinera} FP`);
-            setTxStatus(`Successfully minted ${amountLinera} $FLASH tokens!`);
+            await executeMutation(`mutation { deposit(amountLinera: ${amountLinera}) }`, `Mint ${amountLinera} $BLITZ`);
+            setTxStatus(`Successfully minted ${amountLinera} $BLITZ tokens!`);
             setTimeout(() => setTxStatus(null), 3000);
         } catch (e: any) {
             setTxStatus(`Mint failed: ${e.message}`);

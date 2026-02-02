@@ -5,7 +5,7 @@ import { MIN_BET_LINERA, MAX_BET_LINERA } from '../hooks/useLinera';
 
 interface AssetFaucetsProps {
     lineraBalance: number;
-    flashportBalance: number;
+    blitzBalance: number;
     onMint: (amount: number) => Promise<void>;
     isLoading: boolean;
     chainId: string | null;
@@ -16,7 +16,7 @@ const QUICK_AMOUNTS = [10, 25, 50, 100];
 
 export function AssetFaucets({
     lineraBalance,
-    flashportBalance,
+    blitzBalance,
     onMint,
     isLoading,
     chainId
@@ -41,10 +41,10 @@ export function AssetFaucets({
                     💎 Token Management
                 </span>
                 <h2 className="text-4xl font-black text-white mt-4">
-                    Asset <span className="text-flash">Faucets</span>
+                    Asset <span className="text-blitz">Faucets</span>
                 </h2>
                 <p className="text-secondary mt-2 max-w-lg mx-auto">
-                    Convert Linera tokens to $FLASH for gameplay. Instant, seamless, on-chain.
+                    Convert Linera tokens to $BLITZ for gameplay. Instant, seamless, on-chain.
                 </p>
             </motion.div>
 
@@ -111,8 +111,8 @@ export function AssetFaucets({
                                 <span className="text-white text-xl font-black">⚡</span>
                             </div>
                             <div>
-                                <h3 className="text-white font-bold text-lg">$FLASH</h3>
-                                <p className="text-xs text-flash uppercase tracking-wider">Game Tokens</p>
+                                <h3 className="text-white font-bold text-lg">$BLITZ</h3>
+                                <p className="text-xs text-blitz uppercase tracking-wider">Game Tokens</p>
                             </div>
                         </div>
 
@@ -120,19 +120,19 @@ export function AssetFaucets({
                             Token Balance
                         </p>
                         <motion.p
-                            className="text-4xl font-black flash-balance tabular-nums"
-                            key={flashportBalance}
+                            className="text-4xl font-black blitz-balance tabular-nums"
+                            key={blitzBalance}
                             initial={{ scale: 1.1 }}
                             animate={{ scale: 1 }}
                         >
-                            {flashportBalance.toFixed(2)}
+                            {blitzBalance.toFixed(2)}
                         </motion.p>
-                        <p className="text-flash text-sm font-semibold mt-1">$FLASH</p>
+                        <p className="text-blitz text-sm font-semibold mt-1">$BLITZ</p>
 
                         {/* Mint Section */}
                         <div className="mt-5 pt-4 border-t border-white/10 space-y-4">
                             <p className="text-xs text-secondary uppercase tracking-wider">
-                                Mint $FLASH Tokens
+                                Mint $BLITZ Tokens
                             </p>
 
                             {/* Quick amount buttons */}
@@ -162,7 +162,7 @@ export function AssetFaucets({
                                     max={Math.min(MAX_BET_LINERA * 10, Math.floor(lineraBalance))}
                                     value={mintAmount}
                                     onChange={(e) => setMintAmount(Math.max(0, Number(e.target.value)))}
-                                    className="flex-1 bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white text-lg font-bold focus:border-flash focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+                                    className="flex-1 bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-white text-lg font-bold focus:border-blitz focus:outline-none focus:ring-2 focus:ring-purple-500/20"
                                     placeholder="Amount"
                                 />
                                 <span className="text-secondary text-sm font-semibold">LINERA</span>
@@ -191,14 +191,14 @@ export function AssetFaucets({
                                         </>
                                     ) : (
                                         <>
-                                            ⚡ MINT {mintAmount} $FLASH
+                                            ⚡ MINT {mintAmount} $BLITZ
                                         </>
                                     )}
                                 </span>
                             </motion.button>
 
                             <p className="text-xs text-center text-secondary">
-                                1 LINERA = 1 $FLASH • Instant conversion
+                                1 LINERA = 1 $BLITZ • Instant conversion
                             </p>
                         </div>
                     </div>
@@ -216,9 +216,9 @@ export function AssetFaucets({
                     <span className="text-amber-400 text-lg">💡</span>
                 </div>
                 <div>
-                    <p className="text-white font-bold mb-1">How $FLASH Works</p>
+                    <p className="text-white font-bold mb-1">How $BLITZ Works</p>
                     <p className="text-secondary text-sm leading-relaxed">
-                        Convert your Linera tokens to $FLASH to play games. All winnings are paid in $FLASH
+                        Convert your Linera tokens to $BLITZ to play games. All winnings are paid in $BLITZ
                         and can be withdrawn back to Linera at any time. Transactions are instant and verified on-chain.
                     </p>
                 </div>

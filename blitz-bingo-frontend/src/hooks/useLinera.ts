@@ -71,7 +71,7 @@ export function useGame() {
         localStorage.getItem('linera_chain_id')
     );
     const [applicationId, setApplicationId] = useState<string | null>(
-        localStorage.getItem('flashport_app_id')
+        localStorage.getItem('blitz_app_id')
     );
 
     // Connection status
@@ -116,7 +116,7 @@ export function useGame() {
 
     const updateApplicationId = useCallback((id: string) => {
         setApplicationId(id);
-        localStorage.setItem('flashport_app_id', id);
+        localStorage.setItem('blitz_app_id', id);
     }, []);
 
     // Check connection to linera service

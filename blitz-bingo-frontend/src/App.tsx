@@ -116,7 +116,7 @@ function App() {
                                 <span className="text-xl">⚡</span>
                             </motion.div>
                             <div>
-                                <h1 className="text-xl font-black text-white">FlashPort</h1>
+                                <h1 className="text-xl font-black text-white">Blitz Bingo</h1>
                                 <p className="text-xs text-secondary -mt-0.5">High-Stakes Dice Bingo</p>
                             </div>
                         </div>
@@ -153,9 +153,9 @@ function App() {
                                     <p className="text-sm font-bold text-blue-400">{chainBalance.toFixed(2)}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-[10px] text-secondary uppercase tracking-wider">$FLASH</p>
+                                    <p className="text-[10px] text-secondary uppercase tracking-wider">$BLITZ</p>
                                     <motion.p
-                                        className="text-lg font-black flash-balance"
+                                        className="text-lg font-black blitz-balance"
                                         key={playerBalance}
                                         initial={{ scale: 1.1 }}
                                         animate={{ scale: 1 }}
@@ -319,7 +319,7 @@ function App() {
                         >
                             <AssetFaucets
                                 lineraBalance={chainBalance}
-                                flashportBalance={playerBalance}
+                                blitzBalance={playerBalance}
                                 onMint={mintTokens}
                                 isLoading={isLoading}
                                 chainId={chainId}
@@ -371,14 +371,14 @@ function App() {
                             </div>
                             <h2 className="text-2xl font-bold text-white mb-2">Connected to Linera</h2>
                             <p className="text-secondary mb-6">
-                                Balance: <span className="flash-balance text-xl">{playerBalance.toFixed(2)} $FLASH</span>
+                                Balance: <span className="blitz-balance text-xl">{playerBalance.toFixed(2)} $BLITZ</span>
                             </p>
 
                             {playerBalance < MIN_BET_LINERA && (
                                 <div className="mb-6">
-                                    <p className="text-amber-400 mb-3">Need at least {MIN_BET_LINERA} $FLASH to play</p>
+                                    <p className="text-amber-400 mb-3">Need at least {MIN_BET_LINERA} $BLITZ to play</p>
                                     <button onClick={() => setActiveTab('faucet')} className="btn-secondary">
-                                        💎 Get $FLASH Tokens
+                                        💎 Get $BLITZ Tokens
                                     </button>
                                 </div>
                             )}
@@ -405,7 +405,7 @@ function App() {
                         >
                             <h2 className="text-2xl font-bold text-white mb-2">Session Active ✓</h2>
                             <p className="text-secondary mb-6">
-                                Balance: <span className="flash-balance text-xl">{playerBalance.toFixed(2)} $FLASH</span>
+                                Balance: <span className="blitz-balance text-xl">{playerBalance.toFixed(2)} $BLITZ</span>
                             </p>
 
                             {/* Quick Bet Chips */}
@@ -419,7 +419,7 @@ function App() {
                             </div>
 
                             <p className="text-green-400 text-sm mb-6">
-                                🏆 Potential Win: Up to <span className="font-bold">{(betAmount * 10).toFixed(0)} $FLASH</span> (10x)
+                                🏆 Potential Win: Up to <span className="font-bold">{(betAmount * 10).toFixed(0)} $BLITZ</span> (10x)
                             </p>
 
                             {playerBalance >= MIN_BET_LINERA ? (
@@ -430,13 +430,13 @@ function App() {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
-                                    🎮 Start Game ({betAmount} $FLASH)
+                                    🎮 Start Game ({betAmount} $BLITZ)
                                 </motion.button>
                             ) : (
                                 <div className="space-y-4">
                                     <p className="text-red-400">Insufficient balance!</p>
                                     <button onClick={() => setActiveTab('faucet')} className="btn-primary">
-                                        💎 Get $FLASH Tokens
+                                        💎 Get $BLITZ Tokens
                                     </button>
                                 </div>
                             )}
@@ -469,8 +469,8 @@ function App() {
                                     transition={{ type: 'spring', stiffness: 400 }}
                                 >
                                     {potentialPayout
-                                        ? `${potentialPayout.potentialPayout.toFixed(1)} $FLASH`
-                                        : `${(betAmount * 10).toFixed(0)} $FLASH`
+                                        ? `${potentialPayout.potentialPayout.toFixed(1)} $BLITZ`
+                                        : `${(betAmount * 10).toFixed(0)} $BLITZ`
                                     }
                                 </motion.div>
                                 {potentialPayout && (
@@ -518,7 +518,7 @@ function App() {
                                         <div className="grid grid-cols-3 gap-4">
                                             <div>
                                                 <p className="text-xs text-secondary uppercase">Balance</p>
-                                                <p className="text-lg font-bold flash-balance">{playerBalance.toFixed(1)}</p>
+                                                <p className="text-lg font-bold blitz-balance">{playerBalance.toFixed(1)}</p>
                                             </div>
                                             <div>
                                                 <p className="text-xs text-secondary uppercase">Spent</p>
@@ -530,7 +530,7 @@ function App() {
                                             </div>
                                         </div>
                                         <p className="text-xs text-secondary mt-3">
-                                            Roll costs <span className="text-green-400 font-bold">{ROLL_COST_LINERA} $FLASH</span>
+                                            Roll costs <span className="text-green-400 font-bold">{ROLL_COST_LINERA} $BLITZ</span>
                                         </p>
                                     </div>
 
@@ -565,7 +565,7 @@ function App() {
                                                             animate={{ scale: [1, 1.05, 1] }}
                                                             transition={{ duration: 1, repeat: Infinity }}
                                                         >
-                                                            +{potentialPayout.potentialPayout.toFixed(1)} $FLASH
+                                                            +{potentialPayout.potentialPayout.toFixed(1)} $BLITZ
                                                         </motion.p>
                                                         <p className="text-sm text-secondary">{potentialPayout.multiplier} • {potentialPayout.tierName}</p>
                                                     </>
@@ -589,7 +589,7 @@ function App() {
                                                     whileHover={{ scale: 1.02 }}
                                                     whileTap={{ scale: 0.98 }}
                                                 >
-                                                    💰 Claim {potentialPayout.potentialPayout.toFixed(1)} $FLASH
+                                                    💰 Claim {potentialPayout.potentialPayout.toFixed(1)} $BLITZ
                                                 </motion.button>
                                             )}
 
@@ -601,7 +601,7 @@ function App() {
                                                     whileHover={{ scale: 1.02 }}
                                                     whileTap={{ scale: 0.98 }}
                                                 >
-                                                    🎮 New Game ({betAmount} $FLASH)
+                                                    🎮 New Game ({betAmount} $BLITZ)
                                                 </motion.button>
                                             )}
                                         </motion.div>
@@ -612,7 +612,7 @@ function App() {
                                         <div className="text-center glass-card p-4">
                                             <p className="text-red-400 mb-3">Insufficient balance!</p>
                                             <button onClick={() => setActiveTab('faucet')} className="btn-secondary">
-                                                💎 Get $FLASH
+                                                💎 Get $BLITZ
                                             </button>
                                         </div>
                                     )}
@@ -627,7 +627,7 @@ function App() {
             <footer className="text-center text-secondary text-xs py-8 border-t border-white/5 mt-12">
                 <p>
                     Built on <span className="text-blue-400">Linera Conway Testnet</span> •
-                    <span className="text-flash"> FlashPort</span> Gaming Hub
+                    <span className="text-blitz"> Blitz Bingo</span> Gaming Hub
                 </p>
                 <p className="mt-1 text-muted">
                     Sub-200ms finality • On-chain randomness • Instant payouts

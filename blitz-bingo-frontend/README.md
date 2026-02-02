@@ -1,4 +1,4 @@
-# ⚡ FlashPort: High-Stakes PvP Gaming on Linera
+# ⚡ Blitz Bingo: High-Stakes PvP Gaming on Linera
 
 > **Project Status**: Phase 1 Complete (Dice Bingo Implemented)  
 > **Backend**: Rust (Linera SDK)  
@@ -9,7 +9,7 @@
 
 ## 📖 Project Overview
 
-**FlashPort** is a decentralized, high-performance gaming platform built on the **Linera** blockchain. It leverages Linera's **micro-rollup** architecture to deliver near-instant finality and low-latency gameplay.
+**Blitz Bingo** is a decentralized, high-performance gaming platform built on the **Linera** blockchain. It leverages Linera's **micro-rollup** architecture to deliver near-instant finality and low-latency gameplay.
 
 The project demonstrates:
 1.  **Escrow & State Management**: Secure handling of wagers and game state persistence.
@@ -38,7 +38,7 @@ The project demonstrates:
 ## 🏗 Architecture & Design
 
 ### Micro-Rollup Pattern
-FlashPort runs as a persistent **Application** on the Linera network.
+Blitz Bingo runs as a persistent **Application** on the Linera network.
 *   **Application Chain**: The "Server" chain that holds global state (active matches, high scores, escrow).
 *   **User Chains**: Each player operates on their own micro-chain, sending cross-chain messages to the Application Chain to perform actions (Bet, Move, Join).
 
@@ -53,27 +53,29 @@ FlashPort runs as a persistent **Application** on the Linera network.
 ### Phase 1: Dice Bingo (Single Player)
 *   **Mechanic**: Roll 5 dice to match numbers on a Bingo card.
 *   **Economy**: Pay entry fee, pay per roll, win multipliers (up to 10x).
+*   **Safety**: Optimistic UI with polling-based transaction verification.
 *   **Components**: 
-    *   `BingoCard.tsx`: Grid visualization.
+    *   `BingoCard.tsx`: Grid visualization with win line highlighting.
     *   `DiceShaker.tsx`: 3D-style dice animation.
-    *   `GameStats.tsx`: Live session tracking.
-
+    *   `AssetFaucets.tsx`: Token management and minting interface.
+    *   `WinModal.tsx`: Victory celebration and prize claiming.
+    *   `QuickBetChips.tsx`: Rapid betting controls.
     *   `GameStats.tsx`: Live session tracking.
 
 ---
 
 ## 📂 Project Structure
 
-### `/flashport` (Backend)
+### `/blitz-bingo` (Backend)
 
 | File | Purpose |
 |------|---------|
 | `src/lib.rs` | **Type Definitions**. `Operation` enum. Defines the shared protocol. |
 | `src/contract.rs` | **Business Logic**. Handles game state, escrow locking, and verifiable randomness. |
 | `src/service.rs` | **API Layer**. Exposes GraphQL queries (`currentCard`, `lastRoll`) and mutations. |
-| `src/state.rs` | **Persistence**. `FlashportState` struct using `MapView` for scalable storage. |
+| `src/state.rs` | **Persistence**. `BlitzBingoState` struct using `MapView` for scalable storage. |
 
-### `/flashport-frontend` (Frontend)
+### `/blitz-bingo-frontend` (Frontend)
 
 | Directory/File | Purpose |
 |----------------|---------|
@@ -92,7 +94,7 @@ FlashPort runs as a persistent **Application** on the Linera network.
 
 ### 1. Build Contracts
 ```bash
-cd flashport
+cd blitz-bingo
 cargo build --release --target wasm32-unknown-unknown
 ```
 
@@ -100,15 +102,15 @@ cargo build --release --target wasm32-unknown-unknown
 ```bash
 linera wallet init --faucet https://faucet.testnet-conway.linera.net
 linera publish-and-create \
-  target/wasm32-unknown-unknown/release/flashport_contract.wasm \
-  target/wasm32-unknown-unknown/release/flashport_service.wasm \
+  target/wasm32-unknown-unknown/release/blitz_bingo_contract.wasm \
+  target/wasm32-unknown-unknown/release/blitz_bingo_service.wasm \
   --json-argument 'null'
 ```
 *   Save the resulting **Application ID**.
 
 ### 3. Run Frontend
 ```bash
-cd flashport-frontend
+cd blitz-bingo-frontend
 # Update .env or use UI settings to set App ID & Chain ID
 npm run dev
 ```
